@@ -8,7 +8,7 @@ spec:
   
 
   source:
-    repoURL: https://github.com/amitsingh011194/argocdConfig
+    repoURL: https://github.com/amitsingh011194/AppManifest.git
     targetRevision: HEAD
     path: dev
   destination:
