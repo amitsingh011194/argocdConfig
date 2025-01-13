@@ -1,23 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
+  name: myapp-argo-application-dev
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/amitsingh011194/AppManifest.git  # Your repo URL
-    targetRevision: main  # Use the branch you want to track
-    path: myapp-chart  # Path to the Helm chart directory instead of "dev"
+    repoURL: https://github.com/amitsingh011194/AppManifest.git
+    targetRevision: dev  # Tracks the dev branch
+    path: myapp-chart
     helm:
       valueFiles:
-        - values.yaml  # If you want to override any values from values.yaml
-      parameters:
-        - name: replicaCount
-          value: "3"  # Example to pass a value for the Helm chart's replica count
+        - dev-values.yaml  # Uses dev-specific values
   destination:
-    server: https://kubernetes.default.svc
-    namespace: myapp  # You can specify the namespace where the Helm chart will be deployed
+    server: https://dev-kubernetes-cluster.svc  # Dev cluster
+    namespace: myapp
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
