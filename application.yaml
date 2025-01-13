@@ -6,16 +6,21 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/amitsingh011194/AppManifest.git
-    targetRevision: main
-    path: dev
+    repoURL: https://github.com/amitsingh011194/AppManifest.git  # Your repo URL
+    targetRevision: main  # Use the branch you want to track
+    path: myapp-chart  # Path to the Helm chart directory instead of "dev"
+    helm:
+      valueFiles:
+        - values.yaml  # If you want to override any values from values.yaml
+      parameters:
+        - name: replicaCount
+          value: "3"  # Example to pass a value for the Helm chart's replica count
   destination:
     server: https://kubernetes.default.svc
-    namespace: myapp
+    namespace: myapp  # You can specify the namespace where the Helm chart will be deployed
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-
     automated:
       selfHeal: true
       prune: true
