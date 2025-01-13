@@ -2,22 +2,21 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: myapp-argo-application
-  namespace: argocd 
+  namespace: argocd
 spec:
   project: default
 
-  source: 
+  source:
     repoURL: https://github.com/amitsingh011194/argocdConfig
     targetRevision: HEAD
     path: dev
-  destination:  
-    server: https://kubernetes.default.svc   
+  destination:
+    server: https://kubernetes.default.svc
     namespace: myapp
-  snyncPolicy:
-    syncOption:
-    - CreateNamespace=true
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
 
     automated:
       selfHeal: true
-      prune : true    
-
+      prune: true
