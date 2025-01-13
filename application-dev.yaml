@@ -13,7 +13,7 @@ spec:
       valueFiles:
         - dev-values.yaml  # Uses dev-specific values
   destination:
-    server: https://dev-kubernetes-cluster.svc  # Dev cluster
+    server: https://kubernetes.default.svc
     namespace: myapp
   syncPolicy:
     syncOptions:
